@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0B0F19">
+<title>CoolRoof & HeatShield AI — Architectural Climate & Roof Cooling Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAF7F2;
+  --surface: #FFFFFF;
+  --surface-alt: #F3EFE6;
+  --ink: #0B0F19;
+  --muted: #5B6478;
+  --line: #E6E0D4;
+  --accent: #E15B26;
+  --accent-soft: #FFF1EB;
+  --indigo: #4F46E5;
+  --indigo-soft: #EEF2FF;
+  --cool: #0284C7;
+  --cool-soft: #E0F2FE;
+  --dark-card: #0F172A;
+  --radius: 22px;
+  --shadow: 0 16px 40px -8px rgba(11, 15, 25, 0.08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 15px/1.6 'Plus Jakarta Sans', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+.wrap { max-width: 1140px; margin: auto; padding: 0 18px; }
+
+/* SLEEK SINGLE-LINE FLOATING NAVBAR (NEVER WRAPS ON MOBILE) */
+header {
+  position: sticky;
+  top: 10px;
+  z-index: 40;
+  padding: 0 12px;
+  margin-top: 10px;
+}
+.nav-pill {
+  max-width: 1140px;
+  margin: auto;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 8px 12px 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  box-shadow: 0 12px 32px rgba(11, 15, 25, 0.18);
+  color: #FFFFFF;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F97316, #E11D48, #4F46E5);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.brand-title {
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.icon-btn {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: 0.2s ease;
+}
+.icon-btn:hover { background: rgba(255, 255, 255, 0.2); }
+.icon-btn.speaking {
+  background: #E11D48;
+  border-color: #FB7185;
+  animation: pulseBtn 1.4s infinite;
+}
+@keyframes pulseBtn {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.55); }
+  50% { box-shadow: 0 0 0 8px rgba(225, 29, 72, 0); }
+}
+
+/* GRAND ARCHITECTURAL HERO OPENING */
+.hero {
+  margin: 18px 0 24px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(249, 115, 22, 0.28), transparent 45%),
+    radial-gradient(circle at 15% 85%, rgba(79, 70, 229, 0.28), transparent 50%),
+    linear-gradient(135deg, #0B0F19 0%, #161F33 60%, #1E1B4B 100%);
+  color: #FFFFFF;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.35);
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #FDBA74;
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  margin: 16px 0 14px;
+  max-width: 820px;
+  font-weight: 800;
+}
+.hero h1 span {
+  background: linear-gradient(90deg, #FDBA74, #FB7185, #818CF8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p {
+  color: #CBD5E1;
+  max-width: 680px;
+  font-size: 15.5px;
+  margin: 0 0 24px;
+  line-height: 1.6;
+}
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.btn {
+  border: 0;
+  border-radius: 14px;
+  padding: 11px 18px;
+  font-weight: 700;
+  font-size: 13.5px;
+  background: linear-gradient(135deg, #EA580C, #E11D48);
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(225, 29, 72, 0.25);
+  transition: 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.btn.indigo {
+  background: linear-gradient(135deg, #4F46E5, #0284C7);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.22);
+}
+.btn.glass {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: none;
+}
+.btn.ghost {
+  background: #FFFFFF;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+.btn.small { padding: 8px 12px; font-size: 12px; border-radius: 10px; }
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.hero-stat small {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #94A3B8;
+}
+.hero-stat strong {
+  font-size: 15px;
+  color: #FFFFFF;
+  font-weight: 800;
+}
+
+/* STEP PROGRESS BAR */
+.progress {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 18px 0 24px;
+}
+.step {
+  padding: 11px 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  transition: 0.2s;
+}
+.step.active {
+  border-color: var(--indigo);
+  background: var(--indigo-soft);
+  color: var(--indigo);
+}
+.step.done {
+  background: #0B0F19;
+  color: #FFFFFF;
+  border-color: #0B0F19;
+}
+.step em { font-style: normal; display: block; font-size: 16px; margin-bottom: 2px; }
+
+/* SECTIONS & CARDS */
+.section { margin: 28px 0 36px; scroll-margin-top: 84px; }
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.section-head h2 { font-size: 22px; letter-spacing: -0.5px; margin: 0; }
+.section-head p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
+.tag {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--indigo);
+  background: var(--indigo-soft);
+  padding: 5px 11px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.grid { display: grid; gap: 16px; }
+.grid.two { grid-template-columns: 1.08fr 0.92fr; }
+.grid.three { grid-template-columns: repeat(3, 1fr); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+.card h3 { margin: 0 0 8px; font-size: 16px; letter-spacing: -0.2px; }
+.muted { color: var(--muted); }
+.smalltext { font-size: 12px; color: var(--muted); }
+
+/* SAMPLE SCENARIO BUTTONS */
+.sample-list { display: grid; gap: 8px; }
+.sample {
+  width: 100%;
+  text-align: left;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  transition: 0.18s;
+}
+.sample:hover, .sample.selected {
+  border-color: var(--indigo);
+  background: var(--indigo-soft);
+}
+.sample .emoji { font-size: 22px; }
+.sample b { display: block; font-size: 13.5px; }
+.sample small { color: var(--muted); font-size: 11.5px; }
+
+/* FORM FIELDS */
+.field { margin: 14px 0; }
+.field label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.field input[type=range] { width: 100%; accent-color: var(--indigo); }
+.field select, .field input[type=number] {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 10px 12px;
+  background: #FFFFFF;
+  color: var(--ink);
+  font-weight: 600;
+}
+.quick { display: flex; flex-wrap: wrap; gap: 7px; }
+.quick button {
+  border: 1px solid var(--line);
+  background: var(--surface-alt);
+  border-radius: 99px;
+  padding: 6px 11px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.quick button:hover { border-color: var(--indigo); color: var(--indigo); }
+.appliance { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.appliance label {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  display: block;
+  background: #FAF8F5;
+}
+.appliance input[type=number] { width: 62px !important; margin-top: 4px; padding: 6px 8px; }
+
+.upload {
+  border: 1.5px dashed #94A3B8;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  background: #FAF8F5;
+}
+.upload input { max-width: 100%; font-size: 12px; margin-top: 4px; }
+.canvas-wrap canvas {
+  width: 100%;
+  height: 220px;
+  display: block;
+  border-radius: 14px;
+  background: #0F172A;
+  object-fit: cover;
+}
+.modebar { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.modebar button {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #FFFFFF;
+}
+.modebar button.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #FFFFFF;
+}
+
+/* METRICS & XAI BARS */
+.metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.metric {
+  background: #FAF8F5;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+}
+.metric strong { font-size: 22px; display: block; letter-spacing: -0.8px; }
+.metric small { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+.barline { margin: 12px 0; }
+.barline .labelrow { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 5px; }
+.track { height: 9px; background: #EFECE6; border-radius: 99px; overflow: hidden; }
+.fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #E15B26, #4F46E5); }
+.chart { width: 100%; height: 225px; display: block; }
+.chart-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11.5px; color: var(--muted); }
+.dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; }
+
+/* TREATMENT COMPARISON CARDS */
+.treatment { position: relative; transition: 0.2s; }
+.treatment.recommended {
+  border: 2px solid var(--indigo);
+  background: linear-gradient(180deg, #EEF2FF 0%, #FFFFFF 55%);
+}
+.treatment .price { font-size: 26px; font-weight: 800; letter-spacing: -1px; margin: 10px 0; }
+.treatment ul { padding-left: 18px; color: #475569; font-size: 12.5px; }
+.treatment li { margin: 6px 0; }
+.treatment .selectplan { width: 100%; margin-top: 10px; }
+.pill {
+  display: inline-block;
+  border-radius: 99px;
+  background: var(--surface-alt);
+  padding: 4px 9px;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.switchrow { display: flex; flex-wrap: wrap; gap: 7px; }
+.switchrow button {
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  padding: 8px 12px;
+  background: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+}
+.switchrow button.active {
+  background: var(--ink);
+  color: #FFFFFF;
+  border-color: var(--ink);
+}
+
+/* ACTION CARD */
+.action-card {
+  border: 2px solid var(--indigo);
+  background: linear-gradient(135deg, #EEF2FF 0%, #FFFFFF 65%);
+}
+.action-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.action-head h3 { font-size: 21px; }
+.shopping { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.shopping div {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 11px;
+}
+.shopping b { display: block; font-size: 16px; }
+.shopping small { color: var(--muted); font-size: 11px; }
+.table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.table td, .table th { padding: 9px; border-bottom: 1px solid var(--line); text-align: left; }
+.table th { color: var(--muted); font-size: 10px; text-transform: uppercase; }
+.notice {
+  font-size: 12px;
+  background: #FFF7ED;
+  border: 1px solid #FED7AA;
+  padding: 12px;
+  border-radius: 12px;
+  color: #9A3412;
+}
+.timeline { display: grid; gap: 10px; }
+.event { display: grid; grid-template-columns: 18px 1fr; gap: 10px; }
+.event i { width: 12px; height: 12px; border-radius: 50%; background: var(--indigo); margin-top: 5px; box-shadow: 0 0 0 4px var(--indigo-soft); }
+.footer { padding: 25px 0 45px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11.5px; }
+
+.toast {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0B0F19;
+  color: #FFFFFF;
+  padding: 10px 16px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.25s;
+  z-index: 80;
+}
+.toast.show { opacity: 1; }
+
+/* POP-UP MODAL & FLOATING STEP TOUR */
+.guide-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 15, 25, 0.65);
+  backdrop-filter: blur(6px);
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.22s ease;
+}
+.guide-backdrop.open { opacity: 1; pointer-events: auto; }
+.guide-modal {
+  background: #FFFFFF;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 88vh;
+  overflow: auto;
+  padding: 24px;
+  box-shadow: 0 28px 60px rgba(11, 15, 25, 0.35);
+}
+.guide-steps-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0; }
+.guide-step-box { border: 1px solid var(--line); border-radius: 14px; padding: 13px; background: #FAF8F5; }
+.guide-step-box b { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--ink); margin-bottom: 4px; }
+.guide-step-box span.num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--indigo);
+  color: #FFFFFF;
+  display: inline-grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.guide-step-box p { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.45; }
+
+.coach-bar {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  z-index: 65;
+  background: #0B0F19;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  padding: 16px 18px;
+  max-width: 370px;
+  width: calc(100% - 36px);
+  box-shadow: 0 20px 44px rgba(11, 15, 25, 0.35);
+  display: none;
+}
+.coach-bar.active { display: block; }
+.coach-badge {
+  display: inline-block;
+  background: rgba(79, 70, 229, 0.3);
+  color: #A5B4FC;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 99px;
+  margin-bottom: 6px;
+}
+.coach-title { font-size: 15px; font-weight: 800; margin: 0 0 4px; color: #FFFFFF; }
+.coach-desc { font-size: 12.5px; color: #CBD5E1; margin: 0 0 12px; line-height: 1.45; }
+.coach-actions { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.tour-highlight {
+  outline: 3px solid var(--indigo) !important;
+  outline-offset: 4px;
+  border-radius: 16px;
+  transition: 0.25s;
+}
+
+@media (max-width: 960px) {
+  .grid.two, .grid.three { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .progress { grid-template-columns: repeat(5, minmax(68px, 1fr)); overflow: auto; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 12px; }
+  .hero { padding: 26px 18px; border-radius: 22px; }
+  .guide-steps-grid { grid-template-columns: 1fr; }
+  .appliance, .shopping { grid-template-columns: 1fr 1fr; }
+  .coach-bar { right: 12px; left: 12px; max-width: none; }
+}
+@media print {
+  header, .progress, .no-print, .footer, .guide-backdrop, .coach-bar { display: none !important; }
+  body { background: #FFFFFF; }
+  .section:not(#actionSection) { display: none !important; }
+  #actionSection { display: block !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- COMPACT SINGLE-ROW FLOATING NAVBAR -->
+<header>
+  <div class="nav-pill">
+    <div class="brand">
+      <div class="logo">☀</div>
+      <span class="brand-title" id="navBrandTitle">CoolRoof &amp; HeatShield AI</span>
+    </div>
+    <div class="top-actions">
+      <!-- 1-Click Start / Stop Listen Toggle Button -->
+      <button type="button" class="icon-btn" id="listenToggleBtn" title="Start / Stop Voice">
+        <span id="listenIcon">🔊</span>
+        <span id="listenLabel">Listen</span>
+      </button>
+      <!-- Single Language Change Button Beside Listen Button -->
+      <button type="button" class="icon-btn" id="langBtn" title="Switch Language">
+        हिन्दी
+      </button>
+      <!-- Compact Guide Button -->
+      <button type="button" class="icon-btn" id="openGuideBtn" title="How to Use Guide">
+        ?
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- GRAND HERO SHOWCASE -->
+  <section class="hero">
+    <div class="hero-badge" id="heroEyebrow">🇮🇳 PAN-INDIA ARCHITECTURAL CLIMATE STUDIO · QUEST4EARTH 2026</div>
+    <h1 id="heroTitle">Turn every hot roof into a <span>passive cooling shield.</span></h1>
+    <p id="heroDesc">Diagnose roof heat-trapping across any city in India, inspect glass-box AI drivers, compare low-cost cooling retrofits, and generate a ready-to-build material &amp; carbon action plan.</p>
+    <div class="hero-cta-row no-print">
+      <button type="button" class="btn" id="heroStartTourBtn">🎯 Guide Me What to Fill</button>
+      <button type="button" class="btn glass" id="heroJumpInputBtn">Explore Planner ↓</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><small id="hs1Label">Coverage</small><strong id="hs1Val">All 28 States &amp; 8 UTs</strong></div>
+      <div class="hero-stat"><small id="hs2Label">Built For</small><strong id="hs2Val">Homes · Schools · Shops</strong></div>
+      <div class="hero-stat"><small id="hs3Label">AI Engine</small><strong id="hs3Val">Glass-Box Explainable</strong></div>
+      <div class="hero-stat"><small id="hs4Label">Privacy</small><strong id="hs4Val">100% On-Device</strong></div>
+    </div>
+  </section>
+
+  <!-- 5-STEP PROGRESS BAR -->
+  <div class="progress" aria-label="Five-step journey">
+    <button type="button" class="step active" data-goto="input" data-step="1"><em>🏠</em><span id="st1Txt">1. Input</span></button>
+    <button type="button" class="step" data-goto="scan" data-step="2"><em>🔍</em><span id="st2Txt">2. AI Scan</span></button>
+    <button type="button" class="step" data-goto="compare" data-step="3"><em>⚖️</em><span id="st3Txt">3. Compare</span></button>
+    <button type="button" class="step" data-goto="actionSection" data-step="4"><em>🧾</em><span id="st4Txt">4. Action Card</span></button>
+    <button type="button" class="step" data-goto="testing" data-step="5"><em>🧪</em><span id="st5Txt">5. Validation</span></button>
+  </div>
+
+  <!-- STEP 1: ROOF INPUT -->
+  <section class="section" id="input">
+    <div class="section-head">
+      <div>
+        <h2 id="s1Title">1. Configure Your Building &amp; Roof</h2>
+        <p id="s1Sub">Pick a 1-click sample scenario or select your Indian city and roof specifications.</p>
+      </div>
+      <span class="tag" id="s1Tag">STEP 1 · INPUT</span>
+    </div>
+
+    <div class="grid two">
+      <!-- Left Card: Samples & Visual Scanner -->
+      <div class="card" id="tourSampleCard">
+        <h3 id="sampleCardTitle">One-Click Sample Scenarios</h3>
+        <p class="smalltext" id="sampleCardSub">[SAMPLE TEST DATA] — tap any preset to auto-fill realistic parameters.</p>
+        <div class="sample-list" style="margin-top:10px">
+          <button type="button" class="sample selected" data-sample="school">
+            <span class="emoji">🏫</span>
+            <span><b id="smp1Title">Public School · Top-Floor Classroom</b><small id="smp1Sub">2,400 sq.ft · weathered dark concrete · 46.5°C</small></span>
+          </button>
+          <button type="button" class="sample" data-sample="home">
+            <span class="emoji">🏠</span>
+            <span><b id="smp2Title">Residential Family House Terrace</b><small id="smp2Sub">1,100 sq.ft · standard cement slab · 45.5°C</small></span>
+          </button>
+          <button type="button" class="sample" data-sample="shop">
+            <span class="emoji">🏪</span>
+            <span><b id="smp3Title">Market Shop · Corrugated Tin Shed</b><small id="smp3Sub">350 sq.ft · GI metal sheet · 47.0°C</small></span>
+          </button>
+        </div>
+
+        <div class="field">
+          <label><span id="photoLabel">Optional Roof Photo (Processed on device)</span></label>
+          <div class="upload">
+            <span id="uploadPrompt">📷 Upload or capture a roof photo</span><br>
+            <input type="file" id="photoInput" accept="image/*" capture="environment">
+          </div>
+        </div>
+
+        <div class="canvas-wrap"><canvas id="roofCanvas" width="720" height="440"></canvas></div>
+        <div class="modebar">
+          <button type="button" class="active" data-mode="original" id="modeOrigBtn">Original View</button>
+          <button type="button" data-mode="grid" id="modeGridBtn">36-Zone Albedo Grid</button>
+          <button type="button" data-mode="thermal" id="modeThermBtn">Thermal Heat Overlay</button>
+        </div>
+        <div class="smalltext" id="pixelNote">Interactive architectural preview active. Switch modes above to inspect 36-zone reflectance or heat overlay.</div>
+      </div>
+
+      <!-- Right Card: Location & Parameters -->
+      <div class="card" id="buildingDetailsCard">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px">
+          <h3 style="margin:0" id="paramCardTitle">Location &amp; Roof Specifications</h3>
+          <button type="button" class="btn indigo small" id="cardGuideTrigger">🎯 What to Fill?</button>
+        </div>
+
+        <div class="field" id="tourLocationField" style="background:#FAF8F5;border:1px solid var(--line);border-radius:14px;padding:12px">
+          <label><span id="locFieldLabel">📍 Location in India</span><strong id="locTariffLabel" style="color:var(--indigo);font-size:12px">Tariff ₹6.5/kWh</strong></label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <select id="indiaStateSelect" aria-label="State"></select>
+            <select id="indiaCitySelect" aria-label="City"></select>
+          </div>
+        </div>
+
+        <div class="field" id="tourAreaField">
+          <label><span id="areaFieldLabel">Roof Area</span><strong id="areaVal">2,400 sq.ft</strong></label>
+          <input id="area" type="range" min="150" max="5000" step="50" value="2400">
+          <div class="quick">
+            <button type="button" data-area="350" id="qShopBtn">Small Shop (350)</button>
+            <button type="button" data-area="1100" id="qHomeBtn">2BHK Home (1,100)</button>
+            <button type="button" data-area="2400" id="qSchoolBtn">School Block (2,400)</button>
+          </div>
+        </div>
+
+        <div class="field" id="tourSurfaceField">
+          <label id="surfFieldLabel">Roof Surface Material</label>
+          <select id="surface">
+            <option value="dark" id="optDark">Weathered Dark Concrete</option>
+            <option value="cement" id="optCement">Normal Cement Slab</option>
+            <option value="metal" id="optMetal">Corrugated Tin / Metal Sheet</option>
+            <option value="tile" id="optTile">Red Clay Tile / Khaprail</option>
+          </select>
+        </div>
+
+        <div class="field" id="tourTempField">
+          <label><span id="tempFieldLabel">Outdoor Summer Peak</span><strong id="tempVal">46.5°C</strong></label>
+          <input id="temp" type="range" min="32" max="50" step=".5" value="46.5">
+        </div>
+
+        <div class="field" id="tourApplianceField">
+          <label id="appFieldLabel">Cooling Appliances Below Roof</label>
+          <div class="appliance">
+            <label>🌀 <span id="fanLbl">Fans</span><br><input id="fans" type="number" min="0" max="40" value="12"></label>
+            <label>💨 <span id="coolerLbl">Coolers</span><br><input id="coolers" type="number" min="0" max="20" value="2"></label>
+            <label>❄️ <span id="acLbl">AC Units</span><br><input id="acs" type="number" min="0" max="20" value="0"></label>
+          </div>
+        </div>
+
+        <div class="field" id="tourHoursField">
+          <label><span id="hoursFieldLabel">Daily Operating Hours</span><strong id="hoursVal">8 h</strong></label>
+          <input id="hours" type="range" min="1" max="24" value="8">
+        </div>
+
+        <div class="quick" style="margin-top:16px">
+          <button type="button" id="runScan" class="btn indigo">Run Explainable Scan →</button>
+          <button type="button" id="reset" class="btn ghost">Reset</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2: INTERPRETABLE AI SCAN -->
+  <section class="section" id="scan">
+    <div class="section-head">
+      <div>
+        <h2 id="s2Title">2. Glass-Box Interpretable AI Diagnosis</h2>
+        <p id="s2Sub">Transparent feature weights and 24-hour thermal lag simulation.</p>
+      </div>
+      <span class="tag" id="s2Tag">STEP 2 · EXPLAINABLE AI</span>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h3 id="profileCardTitle">Estimated Roof Heat-Stress Profile</h3>
+        <div class="metric-grid">
+          <div class="metric"><strong id="stressScore">78/100</strong><small id="m1Lbl">Heat-Stress Index</small></div>
+          <div class="metric"><strong id="indoorTemp">40.8°C</strong><small id="m2Lbl">Indoor Peak Temp</small></div>
+          <div class="metric"><strong id="albedo">19%</strong><small id="m3Lbl">Solar Reflectance</small></div>
+        </div>
+        <p class="smalltext" id="diagnosis" style="margin-top:12px"></p>
+
+        <div class="barline"><div class="labelrow"><b id="f1Lbl">Surface colour &amp; low reflectance</b><span id="f1v">46%</span></div><div class="track"><div class="fill" id="f1" style="width:46%"></div></div></div>
+        <div class="barline"><div class="labelrow"><b id="f2Lbl">Local solar &amp; ambient peak</b><span id="f2v">29%</span></div><div class="track"><div class="fill" id="f2" style="width:29%;background:#F59E0B"></div></div></div>
+        <div class="barline"><div class="labelrow"><b id="f3Lbl">Roof material conductivity</b><span id="f3v">16%</span></div><div class="track"><div class="fill" id="f3" style="width:16%;background:#EA580C"></div></div></div>
+        <div class="barline"><div class="labelrow"><b id="f4Lbl">Appliance &amp; occupancy load</b><span id="f4v">9%</span></div><div class="track"><div class="fill" id="f4" style="width:9%;background:#64748B"></div></div></div>
+      </div>
+
+      <div class="card" id="tourWhatIfCard">
+        <h3 id="whatIfCardTitle">What-If Simulator: Increase Roof Reflectance</h3>
+        <div class="field">
+          <label><span id="whatIfSliderLbl">Simulated Solar Reflectance</span><strong id="whatAlbedoVal">19%</strong></label>
+          <input id="whatAlbedo" type="range" min="10" max="90" value="19">
+        </div>
+        <div class="metric-grid">
+          <div class="metric"><strong id="whatIndoor">40.8°C</strong><small id="wm1Lbl">New Indoor Peak</small></div>
+          <div class="metric"><strong id="deltaTemp">0.0°C</strong><small id="wm2Lbl">Cooling Drop</small></div>
+          <div class="metric"><strong id="whatScore">78</strong><small id="wm3Lbl">New Stress Score</small></div>
+        </div>
+        <h3 style="margin-top:18px" id="curveTitle">24-Hour Indoor Temperature Curve (6 AM – 12 AM)</h3>
+        <canvas id="tempChart" class="chart" width="720" height="300"></canvas>
+        <div class="chart-legend">
+          <span><i class="dot" style="background:#EA580C"></i><span id="legBase">Current Uncoated Roof</span></span>
+          <span><i class="dot" style="background:#4F46E5"></i><span id="legCool">Reflective Cool-Roof Scenario</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 3: HUMAN DECISION POINT -->
+  <section class="section" id="compare">
+    <div class="section-head">
+      <div>
+        <h2 id="s3Title">3. Compare Cooling Treatments (Human Decision)</h2>
+        <p id="s3Sub">Filter by priority, then choose the treatment that fits your building and budget.</p>
+      </div>
+      <span class="tag" id="s3Tag">STEP 3 · DECISION</span>
+    </div>
+
+    <div class="card" style="margin-bottom:14px">
+      <b style="font-size:13px" id="prioTitle">Highlight by Priority</b>
+      <div class="switchrow" style="margin-top:10px">
+        <button type="button" class="active" data-priority="cost" id="prioCostBtn">Lowest Upfront Cost</button>
+        <button type="button" data-priority="cool" id="prioCoolBtn">Maximum Cooling Drop</button>
+        <button type="button" data-priority="durability" id="prioDurBtn">Longest Monsoon Life</button>
+      </div>
+      <p class="smalltext" id="priorityText" style="margin-top:8px">Lowest upfront cost highlights the traditional lime wash option.</p>
+    </div>
+
+    <div class="grid three" id="treatmentGrid">
+      <article class="card treatment recommended" data-plan="lime">
+        <span class="pill" id="p1Badge">LOWEST COST</span>
+        <h3 id="p1Title" style="margin-top:8px">Option A · Chuna Solar Wash</h3>
+        <div class="price">₹4.5 <small class="muted">/ sq.ft</small></div>
+        <p class="smalltext" id="p1Desc">Hydrated lime mixed with waterproof binder.</p>
+        <ul>
+          <li id="p1b1">Scenario cooling: ~3.1–3.6°C</li>
+          <li id="p1b2">Indicative life: 1–2 summers</li>
+          <li id="p1b3">Best for low-budget homes &amp; drives</li>
+        </ul>
+        <button type="button" class="btn indigo selectplan" data-select="lime" id="selLimeBtn">Select Chuna Wash</button>
+      </article>
+
+      <article class="card treatment" data-plan="paint">
+        <span class="pill" id="p2Badge">5+ YR DURABLE</span>
+        <h3 id="p2Title" style="margin-top:8px">Option B · Elastomeric Cool Paint</h3>
+        <div class="price">₹16 <small class="muted">/ sq.ft</small></div>
+        <p class="smalltext" id="p2Desc">Weatherproof reflective acrylic coating (albedo 0.81).</p>
+        <ul>
+          <li id="p2b1">Scenario cooling: ~4.4–5.1°C</li>
+          <li id="p2b2">Indicative life: 5+ years</li>
+          <li id="p2b3">Best for schools &amp; permanent roofs</li>
+        </ul>
+        <button type="button" class="btn indigo selectplan" data-select="paint" id="selPaintBtn">Select Cool Paint</button>
+      </article>
+
+      <article class="card treatment" data-plan="shade">
+        <span class="pill" id="p3Badge">TIN-SHED SPECIAL</span>
+        <h3 id="p3Title" style="margin-top:8px">Option C · Bamboo/Jute Shade Mat</h3>
+        <div class="price">₹12 <small class="muted">/ sq.ft</small></div>
+        <p class="smalltext" id="p3Desc">Woven natural shade layer over white base coat.</p>
+        <ul>
+          <li id="p3b1">Scenario cooling: ~5.0–6.0°C</li>
+          <li id="p3b2">Indicative life: ~3 summers</li>
+          <li id="p3b3">Best for tin sheds &amp; top classrooms</li>
+        </ul>
+        <button type="button" class="btn indigo selectplan" data-select="shade" id="selShadeBtn">Select Shade Mat</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- STEP 4: ACTION CARD -->
+  <section class="section" id="actionSection">
+    <div class="section-head">
+      <div>
+        <h2 id="s4Title">4. Implementation &amp; Material Action Card</h2>
+        <p id="s4Sub">Auto-calculated quantities, payback period, and carbon impact.</p>
+      </div>
+      <span class="tag" id="s4Tag">STEP 4 · ACTION</span>
+    </div>
+
+    <div class="card action-card">
+      <div class="action-head">
+        <div>
+          <span class="eyebrow" style="color:var(--indigo)">QUEST4EARTH · ACTIONABLE PLAN</span>
+          <h3 id="actionTitle">Chuna Solar Wash · Roof Cooling Plan</h3>
+          <p class="smalltext" id="actionSubtitle">Prepared for 2,400 sq.ft · Dhanbad, Jharkhand</p>
+        </div>
+        <span class="pill">READY TO PRINT</span>
+      </div>
+
+      <div class="metric-grid" style="margin:16px 0">
+        <div class="metric"><strong id="cost">₹10,800</strong><small id="ac1Lbl">Estimated Upfront Cost</small></div>
+        <div class="metric"><strong id="saving">₹2,850</strong><small id="ac2Lbl">Annual Bill Saving</small></div>
+        <div class="metric"><strong id="payback">45 mo</strong><small id="ac3Lbl">Simple Payback</small></div>
+      </div>
+
+      <h3 id="shopHeading">Hardware Material Shopping List</h3>
+      <div class="shopping" id="shoppingList"></div>
+
+      <h3 style="margin-top:18px" id="sustHeading">Estimated Sustainability Impact</h3>
+      <table class="table">
+        <tr><th id="thMeasure">Measure</th><th id="thEst">Scenario Estimate</th></tr>
+        <tr><td id="tdKwhLbl">Electricity avoided</td><td id="kwh">—</td></tr>
+        <tr><td id="tdCo2Lbl">CO₂ avoided / year (CEA 0.716 kg/kWh)</td><td id="co2">—</td></tr>
+        <tr><td id="tdTreeLbl">Mature tree equivalent (22 kg/tree/yr)</td><td id="trees">—</td></tr>
+        <tr><td id="tdLabLbl">Estimated labour / volunteer effort</td><td id="labour">—</td></tr>
+      </table>
+
+      <div class="notice" style="margin-top:12px" id="safetyNotice">
+        Before purchasing: physically inspect roof cracks, dampness, slope, and drainage. Never apply wet coatings to damaged or unsafe roofs.
+      </div>
+
+      <div class="quick no-print" style="margin-top:14px">
+        <button type="button" class="btn indigo" id="copyPlan">📋 Copy WhatsApp Summary</button>
+        <button type="button" class="btn ghost" id="printPlan">🖨️ Print / Save PDF</button>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <h3 id="finChartTitle">Upfront Cost vs. 5-Year Cumulative Bill Savings</h3>
+      <canvas id="financeChart" class="chart" width="720" height="260"></canvas>
+    </div>
+  </section>
+
+  <!-- STEP 5: FIELD TESTING & LIMITATIONS -->
+  <section class="section" id="testing">
+    <div class="section-head">
+      <div>
+        <h2 id="s5Title">5. Field Validation, Responsible AI &amp; Limitations</h2>
+        <p id="s5Sub">Transparent documentation of testing protocols and model boundaries.</p>
+      </div>
+      <span class="tag" id="s5Tag">STEP 5 · VALIDATION</span>
+    </div>
+
+    <div class="grid two">
+      <div class="card">
+        <h3 id="testLogTitle">Testing &amp; Improvement Protocol</h3>
+        <div class="timeline" style="margin-top:10px">
+          <div class="event"><i></i><div><b id="tc1Title">Test Case 1 · School Classroom Terrace</b><p class="smalltext" id="tc1Desc">2,400 sq.ft weathered dark concrete. Compare surface and ceiling temperatures before and after coating.</p></div></div>
+          <div class="event"><i></i><div><b id="tc2Title">Test Case 2 · Residential Pakka House</b><p class="smalltext" id="tc2Desc">1,100 sq.ft cement slab. Track evening thermal lag and fan/cooler operating hours.</p></div></div>
+          <div class="event"><i></i><div><b id="tc3Title">Test Case 3 · Market Tin-Shed Shop</b><p class="smalltext" id="tc3Desc">350 sq.ft corrugated GI roof. Evaluate bamboo/jute shade mat insulation and wind stability.</p></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 id="limTitle">Honest Limitations &amp; Responsible AI</h3>
+        <ul class="muted" style="font-size:13px;padding-left:18px" id="limList">
+          <li>A 2D photo cannot detect internal slab cracks, water seepage, slab thickness, or room cross-ventilation.</li>
+          <li>Camera lighting and shadows can shift pixel brightness readings by ±10%; visual scanning is an educational proxy, not a calibrated albedometer.</li>
+          <li>All calculations run 100% locally inside your browser—zero personal data, photos, or API keys leave your device.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div><b>CoolRoof &amp; HeatShield AI</b> · Quest4Earth 2026 · Pan-India Climate Adaptation Studio</div>
+  </div>
+</main>
+
+<!-- POP-UP WELCOME GUIDE WITH "DON'T SHOW AGAIN ON REFRESH" -->
+<div class="guide-backdrop no-print" id="guideModalBackdrop" role="dialog" aria-modal="true">
+  <div class="guide-modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+      <span class="tag" id="gmBadge">QUICK START GUIDE</span>
+      <button type="button" class="btn ghost small" id="closeGuideModalTop">✕</button>
+    </div>
+    <h2 id="gmTitle" style="margin:10px 0 6px">How to Use This Planner (4 Easy Steps)</h2>
+    <p class="smalltext" id="gmSub">Follow these 4 steps or launch the interactive spotlight tour to see what to fill in each box:</p>
+
+    <div class="guide-steps-grid">
+      <div class="guide-step-box">
+        <b><span class="num">1</span> <span id="gs1Title">Pick Sample or City</span></b>
+        <p id="gs1Desc">Click School, Home, or Shop to auto-fill everything in 1 tap, or select your Indian State &amp; City and Roof Area.</p>
+      </div>
+      <div class="guide-step-box">
+        <b><span class="num">2</span> <span id="gs2Title">Enter Appliances &amp; Scan</span></b>
+        <p id="gs2Desc">Enter your Fans, Coolers, or ACs, optionally upload a roof photo, and tap "Run Explainable Scan".</p>
+      </div>
+      <div class="guide-step-box">
+        <b><span class="num">3</span> <span id="gs3Title">Test What-If &amp; Compare</span></b>
+        <p id="gs3Desc">Drag the reflectance slider to watch room temperature drop on the 24-hour curve, then compare the 3 treatments.</p>
+      </div>
+      <div class="guide-step-box">
+        <b><span class="num">4</span> <span id="gs4Title">Get Your Action Card</span></b>
+        <p id="gs4Desc">Select a treatment to generate your hardware shopping list, payback months, and printable PDF report.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)">
+      <label style="display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;cursor:pointer;color:var(--muted)">
+        <input type="checkbox" id="dontShowAgainChk" style="width:16px;height:16px;accent-color:var(--indigo)">
+        <span id="dontShowLbl">Don't show this pop-up again on refresh</span>
+      </label>
+      <div style="display:flex;gap:8px">
+        <button type="button" class="btn ghost small" id="closeGuideModalBtn">Close</button>
+        <button type="button" class="btn indigo small" id="launchInteractiveTourBtn">🎯 Start What-to-Fill Tour →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING INTERACTIVE COACHMARK TOUR -->
+<div class="coach-bar no-print" id="coachBar">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <span class="coach-badge" id="coachStepBadge">STEP 1 OF 5</span>
+    <button type="button" id="closeCoachBtn" style="border:0;background:transparent;color:#94A3B8;font-weight:800;font-size:15px">✕</button>
+  </div>
+  <h4 class="coach-title" id="coachTitle">1. Pick a Sample Roof</h4>
+  <p class="coach-desc" id="coachDesc">Tap School, Home, or Shop to auto-fill realistic test numbers immediately.</p>
+  <div class="coach-actions">
+    <button type="button" class="btn glass small" id="coachPrevBtn">←</button>
+    <button type="button" class="btn small" id="coachAutoFillBtn">✨ Auto-Fill</button>
+    <button type="button" class="btn indigo small" id="coachNextBtn">Next →</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Ready</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+const INDIA_LOCATIONS = {
+  "Jharkhand": [{city:"Dhanbad",temp:45.5,tariff:6.5},{city:"Medininagar (Daltonganj)",temp:47.5,tariff:6.5},{city:"Jamshedpur",temp:45.8,tariff:6.5},{city:"Ranchi",temp:41.5,tariff:6.5},{city:"Bokaro",temp:45.0,tariff:6.5}],
+  "Delhi NCR": [{city:"New Delhi",temp:47.0,tariff:7.5},{city:"Outer Delhi",temp:48.5,tariff:7.5}],
+  "Bihar": [{city:"Patna",temp:45.8,tariff:7.1},{city:"Gaya",temp:47.0,tariff:7.1},{city:"Muzaffarpur",temp:43.8,tariff:7.1}],
+  "Uttar Pradesh": [{city:"Varanasi / Prayagraj",temp:47.5,tariff:7.0},{city:"Lucknow / Kanpur",temp:46.2,tariff:7.0},{city:"Noida / Agra",temp:47.0,tariff:7.0}],
+  "Rajasthan": [{city:"Jaipur",temp:46.5,tariff:7.8},{city:"Jodhpur / Bikaner",temp:48.0,tariff:7.8},{city:"Churu / Phalodi",temp:49.5,tariff:7.8}],
+  "Maharashtra": [{city:"Nagpur",temp:47.5,tariff:8.2},{city:"Mumbai / Thane",temp:39.5,tariff:8.5},{city:"Pune",temp:42.0,tariff:8.2}],
+  "Gujarat": [{city:"Ahmedabad",temp:47.2,tariff:7.2},{city:"Surat / Rajkot",temp:45.0,tariff:7.2}],
+  "Madhya Pradesh": [{city:"Bhopal / Indore",temp:44.5,tariff:7.4},{city:"Gwalior / Jabalpur",temp:47.0,tariff:7.4}],
+  "West Bengal": [{city:"Kolkata",temp:43.0,tariff:7.8},{city:"Asansol / Durgapur",temp:45.5,tariff:7.5}],
+  "Odisha & Chhattisgarh": [{city:"Bhubaneswar / Sambalpur",temp:46.0,tariff:6.4},{city:"Raipur / Bilaspur",temp:46.5,tariff:6.6}],
+  "Telangana & AP": [{city:"Hyderabad",temp:44.5,tariff:7.6},{city:"Vijayawada / Vizag",temp:45.0,tariff:7.4}],
+  "Tamil Nadu": [{city:"Chennai",temp:42.8,tariff:7.2},{city:"Madurai / Coimbatore",temp:42.0,tariff:7.2}],
+  "Karnataka & Kerala": [{city:"Bengaluru",temp:38.8,tariff:7.8},{city:"Kalaburagi",temp:45.5,tariff:7.8},{city:"Kochi",temp:39.5,tariff:7.5}],
+  "Punjab & Haryana": [{city:"Amritsar / Ludhiana",temp:46.8,tariff:7.0},{city:"Gurugram / Hisar",temp:47.5,tariff:7.1}]
+};
+
+/* PURE LANGUAGE DICTIONARY (100% ENGLISH OR 100% HINDI, NEVER MIXED) */
+const I18N = {
+  en: {
+    langBtn: "हिन्दी",
+    listenIdle: "Listen",
+    listenStop: "Stop",
+    heroEyebrow: "🇮🇳 PAN-INDIA ARCHITECTURAL CLIMATE STUDIO · QUEST4EARTH 2026",
+    heroTitle: 'Turn every hot roof into a <span>passive cooling shield.</span>',
+    heroDesc: "Diagnose roof heat-trapping across any city in India, inspect glass-box AI drivers, compare low-cost cooling retrofits, and generate a ready-to-build material & carbon action plan.",
+    heroStartTourBtn: "🎯 Guide Me What to Fill",
+    heroJumpInputBtn: "Explore Planner ↓",
+    hs1Label: "Coverage", hs1Val: "All 28 States & 8 UTs",
+    hs2Label: "Built For", hs2Val: "Homes · Schools · Shops",
+    hs3Label: "AI Engine", hs3Val: "Glass-Box Explainable",
+    hs4Label: "Privacy", hs4Val: "100% On-Device",
+    st1Txt: "1. Input", st2Txt: "2. AI Scan", st3Txt: "3. Compare", st4Txt: "4. Action Card", st5Txt: "5. Validation",
+    s1Title: "1. Configure Your Building & Roof",
+    s1Sub: "Pick a 1-click sample scenario or select your Indian city and roof specifications.",
+    sampleCardTitle: "One-Click Sample Scenarios",
+    sampleCardSub: "[SAMPLE TEST DATA] — tap any preset to auto-fill realistic parameters.",
+    smp1Title: "Public School · Top-Floor Classroom", smp1Sub: "2,400 sq.ft · weathered dark concrete · 46.5°C",
+    smp2Title: "Residential Family House Terrace", smp2Sub: "1,100 sq.ft · standard cement slab · 45.5°C",
+    smp3Title: "Market Shop · Corrugated Tin Shed", smp3Sub: "350 sq.ft · GI metal sheet · 47.0°C",
+    photoLabel: "Optional Roof Photo (Processed on device)",
+    uploadPrompt: "📷 Upload or capture a roof photo",
+    modeOrigBtn: "Original View", modeGridBtn: "36-Zone Albedo Grid", modeThermBtn: "Thermal Heat Overlay",
+    paramCardTitle: "Location & Roof Specifications",
+    cardGuideTrigger: "🎯 What to Fill?",
+    locFieldLabel: "📍 Location in India",
+    areaFieldLabel: "Roof Area",
+    qShopBtn: "Small Shop (350)", qHomeBtn: "2BHK Home (1,100)", qSchoolBtn: "School Block (2,400)",
+    surfFieldLabel: "Roof Surface Material",
+    optDark: "Weathered Dark Concrete", optCement: "Normal Cement Slab", optMetal: "Corrugated Tin / Metal Sheet", optTile: "Red Clay Tile / Khaprail",
+    tempFieldLabel: "Outdoor Summer Peak",
+    appFieldLabel: "Cooling Appliances Below Roof",
+    fanLbl: "Fans", coolerLbl: "Coolers", acLbl: "AC Units",
+    hoursFieldLabel: "Daily Operating Hours",
+    runScan: "Run Explainable Scan →", reset: "Reset",
+    s2Title: "2. Glass-Box Interpretable AI Diagnosis",
+    s2Sub: "Transparent feature weights and 24-hour thermal lag simulation.",
+    profileCardTitle: "Estimated Roof Heat-Stress Profile",
+    m1Lbl: "Heat-Stress Index", m2Lbl: "Indoor Peak Temp", m3Lbl: "Solar Reflectance",
+    f1Lbl: "Surface colour & low reflectance", f2Lbl: "Local solar & ambient peak", f3Lbl: "Roof material conductivity", f4Lbl: "Appliance & occupancy load",
+    whatIfCardTitle: "What-If Simulator: Increase Roof Reflectance",
+    whatIfSliderLbl: "Simulated Solar Reflectance",
+    wm1Lbl: "New Indoor Peak", wm2Lbl: "Cooling Drop", wm3Lbl: "New Stress Score",
+    curveTitle: "24-Hour Indoor Temperature Curve (6 AM – 12 AM)",
+    legBase: "Current Uncoated Roof", legCool: "Reflective Cool-Roof Scenario",
+    s3Title: "3. Compare Cooling Treatments (Human Decision)",
+    s3Sub: "Filter by priority, then choose the treatment that fits your building and budget.",
+    prioTitle: "Highlight by Priority",
+    prioCostBtn: "Lowest Upfront Cost", prioCoolBtn: "Maximum Cooling Drop", prioDurBtn: "Longest Monsoon Life",
+    s4Title: "4. Implementation & Material Action Card",
+    s4Sub: "Auto-calculated quantities, payback period, and carbon impact.",
+    ac1Lbl: "Estimated Upfront Cost", ac2Lbl: "Annual Bill Saving", ac3Lbl: "Simple Payback",
+    shopHeading: "Hardware Material Shopping List",
+    sustHeading: "Estimated Sustainability Impact",
+    copyPlan: "📋 Copy WhatsApp Summary", printPlan: "🖨️ Print / Save PDF",
+    finChartTitle: "Upfront Cost vs. 5-Year Cumulative Bill Savings",
+    s5Title: "5. Field Validation, Responsible AI & Limitations",
+    s5Sub: "Transparent documentation of testing protocols and model boundaries.",
+    gmBadge: "QUICK START GUIDE",
+    gmTitle: "How to Use This Planner (4 Easy Steps)",
+    gmSub: "Follow these 4 steps or launch the interactive spotlight tour to see what to fill in each box:",
+    gs1Title: "Pick Sample or City", gs1Desc: "Click School, Home, or Shop to auto-fill everything in 1 tap, or select your Indian State & City and Roof Area.",
+    gs2Title: "Enter Appliances & Scan", gs2Desc: "Enter your Fans, Coolers, or ACs, optionally upload a roof photo, and tap Run Explainable Scan.",
+    gs3Title: "Test What-If & Compare", gs3Desc: "Drag the reflectance slider to watch room temperature drop on the 24-hour curve, then compare the 3 treatments.",
+    gs4Title: "Get Your Action Card", gs4Desc: "Select a treatment to generate your hardware shopping list, payback months, and printable PDF report.",
+    dontShowLbl: "Don't show this pop-up again on refresh",
+    closeGuideModalBtn: "Close",
+    launchInteractiveTourBtn: "🎯 Start What-to-Fill Tour →"
+  },
+  hi: {
+    langBtn: "English",
+    listenIdle: "सुनें",
+    listenStop: "रोकें",
+    heroEyebrow: "🇮🇳 अखिल भारतीय जलवायु और कूल-रूफ स्टूडियो · QUEST4EARTH 2026",
+    heroTitle: 'हर गर्म छत को बनाएं <span>प्राकृतिक ठंडक का कवच।</span>',
+    heroDesc: "भारत के किसी भी शहर के लिए छत की गर्मी का विश्लेषण करें, पारदर्शी AI कारण समझें, कम खर्च वाले उपायों की तुलना करें और अपनी सामग्री व बिजली बचत रिपोर्ट बनाएं।",
+    heroStartTourBtn: "🎯 क्या भरें — स्टेप गाइड",
+    heroJumpInputBtn: "प्लानर देखें ↓",
+    hs1Label: "कवरेज", hs1Val: "सभी 28 राज्य व 8 UT",
+    hs2Label: "उपयोगकर्ता", hs2Val: "घर · स्कूल · दुकानें",
+    hs3Label: "AI मॉडल", hs3Val: "पारदर्शी ग्लास-बॉक्स",
+    hs4Label: "गोपनीयता", hs4Val: "100% सुरक्षित (ऑन-डिवाइस)",
+    st1Txt: "1. छत विवरण", st2Txt: "2. AI जांच", st3Txt: "3. तुलना", st4Txt: "4. एक्शन कार्ड", st5Txt: "5. परीक्षण",
+    s1Title: "1. अपनी छत और भवन का विवरण दर्ज करें",
+    s1Sub: "एक क्लिक में नमूना चुनें या अपना राज्य, शहर और छत का आकार भरें।",
+    sampleCardTitle: "एक-क्लिक नमूना परिदृश्य (Sample Scenarios)",
+    sampleCardSub: "[नमूना डेटा] — सभी बॉक्स स्वतः भरने के लिए किसी एक विकल्प पर टैप करें।",
+    smp1Title: "सरकारी स्कूल · ऊपरी मंजिल की कक्षा", smp1Sub: "2,400 वर्ग फुट · पुरानी पक्की छत · 46.5°C",
+    smp2Title: "आवासीय पक्का मकान (छत)", smp2Sub: "1,100 वर्ग फुट · सामान्य सीमेंट छत · 45.5°C",
+    smp3Title: "बाज़ार की दुकान · टिन शेड", smp3Sub: "350 वर्ग फुट · धातु की चादर · 47.0°C",
+    photoLabel: "छत की फोटो (वैकल्पिक · आपके फोन में सुरक्षित)",
+    uploadPrompt: "📷 छत की फोटो अपलोड करें",
+    modeOrigBtn: "मूल दृश्य", modeGridBtn: "36-ज़ोन ग्रिड", modeThermBtn: "थर्मल हीट मैप",
+    paramCardTitle: "स्थान और छत का विवरण",
+    cardGuideTrigger: "🎯 क्या भरें?",
+    locFieldLabel: "📍 भारत में अपना स्थान चुनें",
+    areaFieldLabel: "छत का क्षेत्रफल (वर्ग फुट)",
+    qShopBtn: "छोटी दुकान (350)", qHomeBtn: "मकान (1,100)", qSchoolBtn: "स्कूल ब्लॉक (2,400)",
+    surfFieldLabel: "छत किस चीज़ की बनी है?",
+    optDark: "पुरानी काली पक्की छत (Dark Concrete)", optCement: "सामान्य सीमेंट छत (Cement Slab)", optMetal: "टिन शेड / धातु की चादर", optTile: "लाल खपरैल छत (Clay Tile)",
+    tempFieldLabel: "गर्मी का अधिकतम तापमान",
+    appFieldLabel: "कमरे में चलने वाले उपकरण",
+    fanLbl: "पंखे", coolerLbl: "कूलर", acLbl: "एसी (AC)",
+    hoursFieldLabel: "प्रतिदिन चलने के घंटे",
+    runScan: "AI विश्लेषण चलाएं →", reset: "रीसेट करें",
+    s2Title: "2. पारदर्शी AI विश्लेषण (Glass-Box AI)",
+    s2Sub: "जानें कि आपकी छत कितनी गर्मी सोख रही है और कमरा क्यों गर्म होता है।",
+    profileCardTitle: "छत का ताप-तनाव परिणाम",
+    m1Lbl: "हीट-स्ट्रेस स्कोर", m2Lbl: "कमरे का तापमान", m3Lbl: "सूर्य परावर्तन",
+    f1Lbl: "छत का गहरा रंग और कम परावर्तन", f2Lbl: "बाहरी अधिकतम तापमान", f3Lbl: "छत की सामग्री का ताप संचालन", f4Lbl: "उपकरण और आंतरिक भार",
+    whatIfCardTitle: "सिम्युलेटर: यदि छत को सफेद परावर्तक बनाया जाए",
+    whatIfSliderLbl: "सिम्युलेटेड सूर्य परावर्तन (%)",
+    wm1Lbl: "नया कमरे का तापमान", wm2Lbl: "तापमान में कमी", wm3Lbl: "नया स्ट्रेस स्कोर",
+    curveTitle: "24-घंटे का इनडोर तापमान ग्राफ (सुबह 6 से रात 12)",
+    legBase: "वर्तमान सामान्य छत", legCool: "कूल-रूफ कोटिंग के बाद",
+    s3Title: "3. ठंडक के 3 उपायों की तुलना करें (आपका निर्णय)",
+    s3Sub: "अपनी प्राथमिकता चुनें और अपने बजट के अनुसार उपाय सेलेक्ट करें।",
+    prioTitle: "प्राथमिकता के अनुसार हाइलाइट करें",
+    prioCostBtn: "सबसे कम खर्च", prioCoolBtn: "अधिकतम ठंडक", prioDurBtn: "सबसे अधिक टिकाऊ (5+ वर्ष)",
+    s4Title: "4. आपका एक्शन और सामग्री शॉपिंग कार्ड",
+    s4Sub: "चयनित उपाय के लिए आवश्यक सामग्री, लागत और बिजली बचत।",
+    ac1Lbl: "अनुमानित कुल लागत", ac2Lbl: "सालाना बिजली बिल बचत", ac3Lbl: "लागत वसूली समय",
+    shopHeading: "आवश्यक सामग्री की सूची",
+    sustHeading: "पर्यावरण और कार्बन बचत प्रभाव",
+    copyPlan: "📋 सारांश कॉपी करें", printPlan: "🖨️ प्रिंट / PDF सेव करें",
+    finChartTitle: "शुरुआती लागत बनाम 5-वर्षीय बिजली बिल बचत",
+    s5Title: "5. क्षेत्रीय परीक्षण, जिम्मेदार AI और सीमाएं",
+    s5Sub: "प्रोटोटाइप परीक्षण और तकनीकी सीमाओं का स्पष्ट विवरण।",
+    gmBadge: "त्वरित उपयोग गाइड",
+    gmTitle: "इस वेबसाइट का उपयोग कैसे करें (4 आसान चरण)",
+    gmSub: "इन 4 चरणों का पालन करें या स्टेप-बाय-स्टेप टूर शुरू करें:",
+    gs1Title: "नमूना या शहर चुनें", gs1Desc: "स्कूल, घर या दुकान पर टैप करके सभी बॉक्स स्वतः भरें, या अपना राज्य और छत का आकार चुनें।",
+    gs2Title: "उपकरण भरें और स्कैन करें", gs2Desc: "पंखे, कूलर या एसी की संख्या दर्ज करें और 'AI विश्लेषण चलाएं' पर टैप करें।",
+    gs3Title: "तुलना करें और उपाय चुनें", gs3Desc: "24-घंटे के ग्राफ पर तापमान में गिरावट देखें और 3 उपायों में से अपना विकल्प चुनें।",
+    gs4Title: "अपना एक्शन कार्ड पाएं", gs4Desc: "सामग्री की मात्रा, बिजली बचत और कार्बन कटौती रिपोर्ट देखें व प्रिंट करें।",
+    dontShowLbl: "रीफ्रेश करने पर यह पॉप-अप दोबारा न दिखाएं",
+    closeGuideModalBtn: "बंद करें",
+    launchInteractiveTourBtn: "🎯 स्टेप-बाय-स्टेप टूर शुरू करें →"
+  }
+};
+
+let currentCityLabel = "Dhanbad, Jharkhand", currentTariff = 6.5, activeSampleKey = "school";
+let selected = "lime", photo = null, scanMode = "original", lang = "en", lastModel = {}, isSpeaking = false;
+
+const samples = {
+  school: { area: 2400, surface: "dark", temp: 46.5, fans: 12, coolers: 2, acs: 0, hours: 8 },
+  home: { area: 1100, surface: "cement", temp: 45.5, fans: 4, coolers: 1, acs: 1, hours: 7 },
+  shop: { area: 350, surface: "metal", temp: 47.0, fans: 2, coolers: 0, acs: 0, hours: 10 }
+};
+const surfaceData = {
+  dark: { alb: 19, material: 16 },
+  cement: { alb: 32, material: 12 },
+  metal: { alb: 25, material: 20 },
+  tile: { alb: 35, material: 10 }
+};
+const plans = {
+  lime: { en: "Chuna Solar Wash", hi: "पारंपरिक चूना सोलर लेप", rate: 4.5, cool: 3.35 },
+  paint: { en: "Elastomeric Cool-Roof Paint", hi: "इलास्टोमेरिक कूल-रूफ पेंट", rate: 16, cool: 4.75 },
+  shade: { en: "Bamboo/Jute Shade Mat", hi: "बांस/जूट शेड मैट + बेस कोट", rate: 12, cool: 5.5 }
+};
+
+function fmt(n) { return Math.round(n).toLocaleString("en-IN"); }
+function toast(t) {
+  const el = $("toast");
+  if (!el) return;
+  el.textContent = t;
+  el.classList.add("show");
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => el.classList.remove("show"), 2300);
+}
+function vals() {
+  return {
+    area: +$("area").value,
+    surface: $("surface").value,
+    temp: +$("temp").value,
+    fans: +$("fans").value || 0,
+    coolers: +$("coolers").value || 0,
+    acs: +$("acs").value || 0,
+    hours: +$("hours").value
+  };
+}
+
+function calculate() {
+  const v = vals(), s = surfaceData[v.surface], appliance = v.fans * 0.4 + v.coolers * 1.6 + v.acs * 2.5;
+  const heat = Math.max(15, Math.min(98, Math.round((100 - s.alb) * 0.53 + (v.temp - 38) * 3.1 + s.material * 0.55 + appliance * 0.3)));
+  const indoor = +(29 + (v.temp - 38) * 0.48 + (100 - s.alb) * 0.055 + s.material * 0.1 + appliance * 0.08).toFixed(1);
+  const weights = [Math.max(10, (100 - s.alb) * 0.53), Math.max(10, (v.temp - 38) * 3.1), Math.max(8, s.material * 0.55), Math.max(5, appliance * 0.3)];
+  const sum = weights.reduce((a, b) => a + b, 0), pct = weights.map(x => Math.round((x / sum) * 100));
+  pct[0] += 100 - pct.reduce((a, b) => a + b, 0);
+  lastModel = { v, heat, indoor, pct, alb: s.alb };
+
+  $("areaVal").textContent = fmt(v.area) + " sq.ft";
+  $("tempVal").textContent = v.temp.toFixed(1) + "°C";
+  $("hoursVal").textContent = v.hours + " h";
+  $("stressScore").textContent = heat + "/100";
+  $("indoorTemp").textContent = indoor + "°C";
+  $("albedo").textContent = s.alb + "%";
+
+  if (lang === "hi") {
+    $("diagnosis").textContent = v.surface === "metal"
+      ? "धातु की पतली छत बहुत तेजी से गर्म होती है; इसके लिए बांस/जूट की बाहरी छाया सबसे उपयुक्त है।"
+      : "गहरी कंक्रीट छत धूप का बड़ा हिस्सा सोख लेती है; सफेद परावर्तक कोटिंग से कमरे का तापमान घटाया जा सकता है।";
+  } else {
+    $("diagnosis").textContent = v.surface === "metal"
+      ? "Thin metal heats rapidly; an external ventilated bamboo/jute shade layer is strongly recommended."
+      : "Dark concrete absorbs high solar energy; applying a high-reflectance coating significantly cuts ceiling heat transfer.";
+  }
+
+  ["f1", "f2", "f3", "f4"].forEach((id, i) => {
+    $(id).style.width = pct[i] + "%";
+    $("f" + (i + 1) + "v").textContent = pct[i] + "%";
+  });
+
+  $("whatAlbedo").value = s.alb;
+  $("whatAlbedoVal").textContent = s.alb + "%";
+  whatIf();
+  drawTemp();
+  updateAction();
+  drawFinance();
+  canvasBase();
+}
+
+function whatIf() {
+  const a = +$("whatAlbedo").value, v = vals(), base = lastModel.indoor || 40.8;
+  const reduced = Math.max(0, (a - surfaceData[v.surface].alb) * 0.055);
+  const t = +(base - reduced).toFixed(1);
+  $("whatAlbedoVal").textContent = a + "%";
+  $("whatIndoor").textContent = t + "°C";
+  $("deltaTemp").textContent = reduced.toFixed(1) + "°C";
+  $("whatScore").textContent = Math.max(10, Math.round(lastModel.heat - reduced * 4));
+  drawTemp(a);
+}
+
+function sample(name) {
+  activeSampleKey = name;
+  photo = null;
+  const s = samples[name];
+  Object.entries(s).forEach(([k, v]) => ($(k).value = v));
+  document.querySelectorAll(".sample").forEach(b => b.classList.toggle("selected", b.dataset.sample === name));
+  calculate();
+}
+
+function drawRealisticRoofIllustration(x, w, h, surfaceType) {
+  const sky = x.createLinearGradient(0, 0, 0, h * 0.3);
+  sky.addColorStop(0, "#1E1B4B");
+  sky.addColorStop(1, "#312E81");
+  x.fillStyle = sky;
+  x.fillRect(0, 0, w, h);
+
+  x.fillStyle = "rgba(251, 146, 60, 0.3)";
+  x.beginPath(); x.arc(w - 80, 48, 38, 0, Math.PI * 2); x.fill();
+  x.fillStyle = "#FB923C";
+  x.beginPath(); x.arc(w - 80, 48, 20, 0, Math.PI * 2); x.fill();
+
+  const roofColors = {
+    dark: ["#334155", "#475569", "#1E293B", "WEATHERED DARK CONCRETE (Albedo ~19%)"],
+    cement: ["#64748B", "#94A3B8", "#475569", "STANDARD CEMENT SLAB (Albedo ~32%)"],
+    metal: ["#475569", "#64748B", "#334155", "CORRUGATED GI TIN SHED (Albedo ~25%)"],
+    tile: ["#9A3412", "#C2410C", "#7C2D12", "RED CLAY TILE ROOF (Albedo ~35%)"]
+  };
+  const pal = roofColors[surfaceType] || roofColors.dark;
+  x.fillStyle = "#E2E8F0";
+  x.fillRect(35, 78, w - 70, 290);
+  x.fillStyle = pal[0];
+  x.fillRect(55, 96, w - 110, 252);
+
+  const rows = surfaceType === "metal" ? 10 : 5, cols = surfaceType === "metal" ? 14 : 6;
+  const cw = (w - 130) / cols, rh = 232 / rows;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      x.fillStyle = (r + c) % 2 === 0 ? pal[0] : pal[1];
+      x.fillRect(65 + c * cw, 106 + r * rh, cw - 3, rh - 3);
+    }
+  }
+  x.fillStyle = "rgba(11, 15, 25, 0.82)";
+  x.fillRect(55, 28, 430, 34);
+  x.fillStyle = "#FFFFFF";
+  x.font = "bold 13px sans-serif";
+  x.fillText("☀️ " + pal[3], 68, 50);
+}
+
+function canvasBase() {
+  const c = $("roofCanvas"), x = c.getContext("2d");
+  x.clearRect(0, 0, c.width, c.height);
+  const v = vals();
+  if (photo) x.drawImage(photo, 0, 0, c.width, c.height);
+  else drawRealisticRoofIllustration(x, c.width, c.height, v.surface);
+
+  if (scanMode !== "original") {
+    const cellW = c.width / 6, cellH = c.height / 6;
+    for (let r = 0; r < 6; r++) {
+      for (let col = 0; col < 6; col++) {
+        let data = x.getImageData(Math.floor(col * cellW + cellW / 2), Math.floor(r * cellH + cellH / 2), 1, 1).data;
+        let lum = 0.2126 * data[0] + 0.7152 * data[1] + 0.0722 * data[2];
+        let al = Math.round((lum / 255) * 100);
+        x.fillStyle = scanMode === "grid" ? "rgba(79, 70, 229, 0.28)" : `rgba(${Math.round(255 * (1 - lum / 255))}, ${Math.round(65 + lum * 0.4)}, 40, 0.42)`;
+        x.fillRect(col * cellW, r * cellH, cellW, cellH);
+        x.strokeStyle = "rgba(255,255,255,0.85)";
+        x.lineWidth = 1.5;
+        x.strokeRect(col * cellW, r * cellH, cellW, cellH);
+        x.fillStyle = "rgba(11, 15, 25, 0.78)";
+        x.fillRect(col * cellW + 6, r * cellH + 6, 52, 22);
+        x.fillStyle = "#FFFFFF";
+        x.font = "bold 12px sans-serif";
+        x.fillText(scanMode === "grid" ? al + "%" : Math.round(65 - (lum / 255) * 25) + "°C", col * cellW + 10, r * cellH + 21);
+      }
+    }
+  }
+}
+
+function drawTemp(alb) {
+  const c = $("tempChart"), ctx = c.getContext("2d"), w = c.width, h = c.height;
+  ctx.clearRect(0, 0, w, h);
+  let v = vals(), base = lastModel.indoor || 40.8, ref = alb ?? +$("whatAlbedo").value;
+  ctx.strokeStyle = "#E6E0D4";
+  ctx.lineWidth = 1;
+  for (let i = 0; i < 5; i++) {
+    let y = 25 + i * 55;
+    ctx.beginPath(); ctx.moveTo(45, y); ctx.lineTo(w - 15, y); ctx.stroke();
+    ctx.fillStyle = "#5B6478"; ctx.font = "12px sans-serif";
+    ctx.fillText(32 + i * 3 + "°", 5, y + 4);
+  }
+  function curve(color, offset) {
+    ctx.beginPath();
+    for (let i = 0; i < 19; i++) {
+      let hour = 6 + i, heat = Math.sin(((hour - 6) / 18) * Math.PI) * 6.2;
+      let val = base - 2.5 + heat + Math.min(0, offset);
+      let x = 45 + (i * (w - 70)) / 18, y = h - 25 - (val - 32) * 18;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = color; ctx.lineWidth = 4; ctx.stroke();
+  }
+  curve("#EA580C", 0);
+  curve("#4F46E5", (ref - surfaceData[v.surface].alb) * -0.055);
+  ctx.fillStyle = "#5B6478"; ctx.font = "11px sans-serif";
+  ["6 AM", "9 AM", "12 PM", "3 PM", "6 PM", "9 PM", "12 AM"].forEach((t, i) => ctx.fillText(t, 38 + (i * (w - 85)) / 6, h - 5));
+}
+
+function updateAction() {
+  const v = vals(), p = plans[selected], cost = v.area * p.rate;
+  let kwhFactor = selected === "lime" ? 0.055 : selected === "paint" ? 0.095 : 0.105;
+  let kwh = Math.round(v.area * kwhFactor * (v.hours / 8) * (v.temp / 45));
+  let annual = kwh * currentTariff;
+  let co2 = kwh * 0.716;
+  let pay = annual > 0 ? Math.ceil((cost / annual) * 12) : 0;
+
+  $("actionTitle").textContent = (lang === "hi" ? p.hi : p.en) + (lang === "hi" ? " · कूल-रूफ योजना" : " · Roof Cooling Plan");
+  $("actionSubtitle").textContent = fmt(v.area) + " sq.ft · " + currentCityLabel + " (₹" + currentTariff + "/kWh)";
+  $("cost").textContent = "₹" + fmt(cost);
+  $("saving").textContent = "₹" + fmt(annual);
+  $("payback").textContent = pay > 120 ? ">120 mo" : pay + " mo";
+  $("kwh").textContent = fmt(kwh) + " kWh/yr";
+  $("co2").textContent = fmt(co2) + " kg CO₂/yr";
+  $("trees").textContent = (co2 / 22).toFixed(1) + (lang === "hi" ? " पेड़ के बराबर" : " mature trees");
+  $("labour").textContent = Math.max(1, Math.ceil(v.area / (selected === "shade" ? 450 : 700))) + (lang === "hi" ? " मानव-दिवस" : " person-days");
+
+  let items = [];
+  if (selected === "lime") items = [[lang === "hi" ? "चूना (Hydrated Lime)" : "Hydrated lime", fmt(v.area * 0.035) + " kg"], [lang === "hi" ? "वाटरप्रूफ बाइंडर" : "Waterproof binder", fmt(v.area * 0.008) + " kg"]];
+  if (selected === "paint") items = [[lang === "hi" ? "इलास्टोमेरिक कूल पेंट" : "Elastomeric cool paint", (v.area / 55).toFixed(1) + " L"], [lang === "hi" ? "प्राइमर कोट" : "Compatible primer", (v.area / 90).toFixed(1) + " L"]];
+  if (selected === "shade") items = [[lang === "hi" ? "बांस/जूट शेड मैट" : "Bamboo/jute shade mat", fmt(v.area) + " sq.ft"], [lang === "hi" ? "सफेद बेस कोट" : "White base coat", (v.area / 65).toFixed(1) + " L"]];
+  $("shoppingList").innerHTML = items.map(a => `<div><b>${a[1]}</b><small>${a[0]}</small></div>`).join("");
+}
+
+function drawFinance() {
+  const c = $("financeChart"), ctx = c.getContext("2d"), w = c.width, h = c.height;
+  ctx.clearRect(0, 0, w, h);
+  let v = vals(), p = plans[selected], cost = v.area * p.rate;
+  let kwh = v.area * (selected === "lime" ? 0.055 : selected === "paint" ? 0.095 : 0.105) * (v.hours / 8) * (v.temp / 45);
+  let annual = kwh * currentTariff;
+  let max = Math.max(cost, annual * 5) * 1.15;
+  [0, 0.5, 1].forEach(f => {
+    let y = h - 35 - f * (h - 75);
+    ctx.strokeStyle = "#E6E0D4"; ctx.beginPath(); ctx.moveTo(48, y); ctx.lineTo(w - 15, y); ctx.stroke();
+  });
+  let bw = 110;
+  let y1 = h - 35 - (cost / max) * (h - 75), y2 = h - 35 - ((annual * 5) / max) * (h - 75);
+  ctx.fillStyle = "#EA580C"; ctx.fillRect(w * 0.26, y1, bw, h - 35 - y1);
+  ctx.fillStyle = "#4F46E5"; ctx.fillRect(w * 0.60, y2, bw, h - 35 - y2);
+  ctx.fillStyle = "#0B0F19"; ctx.font = "bold 13px sans-serif";
+  ctx.fillText("₹" + fmt(cost), w * 0.26, y1 - 8);
+  ctx.fillText("₹" + fmt(annual * 5), w * 0.60, y2 - 8);
+  ctx.font = "12px sans-serif";
+  ctx.fillText(lang === "hi" ? "शुरुआती लागत" : "Upfront Cost", w * 0.26, h - 12);
+  ctx.fillText(lang === "hi" ? "5-वर्षीय बचत" : "5-Year Savings", w * 0.60, h - 12);
+}
+
+function selectPlan(id) {
+  selected = id;
+  document.querySelectorAll(".treatment").forEach(el => el.classList.toggle("recommended", el.dataset.plan === id));
+  updateAction();
+  drawFinance();
+}
+
+function priority(p) {
+  let chosen = p === "cost" ? "lime" : p === "cool" ? "shade" : "paint";
+  document.querySelectorAll("[data-priority]").forEach(b => b.classList.toggle("active", b.dataset.priority === p));
+  selectPlan(chosen);
+}
+
+function summary() {
+  let v = vals(), p = plans[selected], cost = v.area * p.rate;
+  let kwh = Math.round(v.area * (selected === "lime" ? 0.055 : selected === "paint" ? 0.095 : 0.105) * (v.hours / 8) * (v.temp / 45));
+  if (lang === "hi") {
+    return `कूल-रूफ और हीट-शील्ड एआई रिपोर्ट। आपका स्थान ${currentCityLabel} है। ${v.area} वर्ग फुट की छत के लिए ${p.hi} चुना गया है। अनुमानित लागत ${fmt(cost)} रुपये है और सालाना बिजली बचत ${fmt(kwh * currentTariff)} रुपये होगी।`;
+  }
+  return `CoolRoof and HeatShield AI Summary for ${currentCityLabel}. For your ${v.area} square feet roof, ${p.en} has an estimated cost of ${fmt(cost)} rupees and saves ${fmt(kwh * currentTariff)} rupees per year.`;
+}
+
+/* SINGLE START/STOP LISTEN TOGGLE BUTTON */
+function setListeningUI(active) {
+  isSpeaking = active;
+  const btn = $("listenToggleBtn");
+  btn.classList.toggle("speaking", active);
+  $("listenIcon").textContent = active ? "⏹️" : "🔊";
+  $("listenLabel").textContent = active ? I18N[lang].listenStop : I18N[lang].listenIdle;
+}
+
+function toggleListen() {
+  const synth = window.speechSynthesis;
+  if (!synth || typeof SpeechSynthesisUtterance === "undefined") {
+    toast("Voice unavailable on this browser.");
+    return;
+  }
+  if (isSpeaking || synth.speaking) {
+    synth.cancel();
+    setListeningUI(false);
+    toast(lang === "hi" ? "आवाज़ रोक दी गई" : "Audio stopped");
+    return;
+  }
+  const u = new SpeechSynthesisUtterance(summary());
+  u.lang = lang === "hi" ? "hi-IN" : "en-IN";
+  u.rate = 0.95;
+  u.onend = () => setListeningUI(false);
+  u.onerror = () => setListeningUI(false);
+  setListeningUI(true);
+  synth.speak(u);
+}
+
+/* PURE LANGUAGE SWITCHER (ALL ENGLISH OR ALL HINDI) */
+function applyLanguage() {
+  const dict = I18N[lang];
+  Object.entries(dict).forEach(([id, val]) => {
+    const el = $(id);
+    if (!el) return;
+    if (id === "heroTitle") el.innerHTML = val;
+    else el.textContent = val;
+  });
+  setListeningUI(false);
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  calculate();
+}
+
+$("langBtn").addEventListener("click", () => {
+  lang = lang === "en" ? "hi" : "en";
+  applyLanguage();
+  toast(lang === "hi" ? "हिन्दी भाषा सक्रिय" : "Switched to English");
+});
+$("listenToggleBtn").addEventListener("click", toggleListen);
+
+/* POP-UP MODAL WITH "DON'T SHOW AGAIN ON REFRESH" */
+const GUIDE_STORAGE_KEY = "coolroof_hide_guide_v2";
+function getHidePref() {
+  try { return localStorage.getItem(GUIDE_STORAGE_KEY) === "1"; } catch (e) { return false; }
+}
+function saveHidePref(val) {
+  try {
+    if (val) localStorage.setItem(GUIDE_STORAGE_KEY, "1");
+    else localStorage.removeItem(GUIDE_STORAGE_KEY);
+  } catch (e) {}
+}
+function openGuideModal() {
+  $("dontShowAgainChk").checked = getHidePref();
+  $("guideModalBackdrop").classList.add("open");
+}
+function closeGuideModal() {
+  if ($("dontShowAgainChk").checked) {
+    saveHidePref(true);
+  }
+  $("guideModalBackdrop").classList.remove("open");
+}
+
+$("openGuideBtn").addEventListener("click", openGuideModal);
+$("closeGuideModalTop").addEventListener("click", closeGuideModal);
+$("closeGuideModalBtn").addEventListener("click", closeGuideModal);
+$("guideModalBackdrop").addEventListener("click", e => { if (e.target === $("guideModalBackdrop")) closeGuideModal(); });
+
+/* INTERACTIVE STEP-BY-STEP TOUR */
+const TOUR_STEPS = [
+  { target: "tourSampleCard", titleEn: "1. Pick a Sample Scenario", descEn: "Tap School, House, or Shop to auto-fill realistic numbers in 1 click.", titleHi: "1. एक नमूना चुनें", descHi: "स्कूल, घर या दुकान पर टैप करके सभी बॉक्स स्वतः भरें।", autoFill: () => sample("school") },
+  { target: "tourLocationField", titleEn: "2. Select Your City in India", descEn: "Pick your State and City to load local summer peak temperature and power tariff.", titleHi: "2. अपना राज्य और शहर चुनें", descHi: "यहाँ से अपना शहर चुनें ताकि तापमान और बिजली दर सेट हो जाए।", autoFill: () => {} },
+  { target: "tourAreaField", titleEn: "3. Set Roof Area & Material", descEn: "Drag the slider to your roof size in sq.ft and select your roof surface material.", titleHi: "3. छत का आकार और प्रकार चुनें", descHi: "स्लाइडर से अपनी छत का क्षेत्रफल और छत का प्रकार चुनें।", autoFill: () => { $("area").value = 1100; calculate(); } },
+  { target: "tourWhatIfCard", titleEn: "4. Test the What-If Slider", descEn: "Drag the reflectance slider to 80% to watch indoor temperature drop on the 24-hour chart.", titleHi: "4. परावर्तन स्लाइडर चलाकर देखें", descHi: "स्लाइडर को 80% तक बढ़ाएं और ग्राफ पर तापमान में गिरावट देखें।", autoFill: () => { $("whatAlbedo").value = 80; whatIf(); } },
+  { target: "compare", titleEn: "5. Select Your Cooling Plan", descEn: "Choose Option A, B, or C to generate your Hardware Shopping List below.", titleHi: "5. अपना कूलिंग प्लान चुनें", descHi: "विकल्प A, B या C चुनें और नीचे अपना एक्शन कार्ड पाएं।", autoFill: () => selectPlan("paint") }
+];
+let tourIdx = 0;
+function renderTour() {
+  document.querySelectorAll(".tour-highlight").forEach(el => el.classList.remove("tour-highlight"));
+  const s = TOUR_STEPS[tourIdx];
+  $("coachBar").classList.add("active");
+  $("coachStepBadge").textContent = `STEP ${tourIdx + 1} / ${TOUR_STEPS.length}`;
+  $("coachTitle").textContent = lang === "hi" ? s.titleHi : s.titleEn;
+  $("coachDesc").textContent = lang === "hi" ? s.descHi : s.descEn;
+  const el = $(s.target);
+  if (el) { el.classList.add("tour-highlight"); el.scrollIntoView({ behavior: "smooth", block: "center" }); }
+}
+function startTour() { closeGuideModal(); tourIdx = 0; renderTour(); }
+function stopTour() {
+  document.querySelectorAll(".tour-highlight").forEach(el => el.classList.remove("tour-highlight"));
+  $("coachBar").classList.remove("active");
+}
+$("heroStartTourBtn").addEventListener("click", startTour);
+$("cardGuideTrigger").addEventListener("click", startTour);
+$("launchInteractiveTourBtn").addEventListener("click", startTour);
+$("closeCoachBtn").addEventListener("click", stopTour);
+$("coachPrevBtn").addEventListener("click", () => { if (tourIdx > 0) { tourIdx--; renderTour(); } });
+$("coachNextBtn").addEventListener("click", () => { if (tourIdx < TOUR_STEPS.length - 1) { tourIdx++; renderTour(); } else stopTour(); });
+$("coachAutoFillBtn").addEventListener("click", () => { if (TOUR_STEPS[tourIdx].autoFill) TOUR_STEPS[tourIdx].autoFill(); });
+
+$("heroJumpInputBtn").addEventListener("click", () => $("input").scrollIntoView({ behavior: "smooth" }));
+["area", "temp", "hours"].forEach(id => $(id).addEventListener("input", calculate));
+["surface", "fans", "coolers", "acs"].forEach(id => $(id).addEventListener("change", calculate));
+$("whatAlbedo").addEventListener("input", whatIf);
+document.querySelectorAll("[data-sample]").forEach(b => b.addEventListener("click", () => sample(b.dataset.sample)));
+document.querySelectorAll("[data-area]").forEach(b => b.addEventListener("click", () => { $("area").value = b.dataset.area; calculate(); }));
+document.querySelectorAll("[data-select]").forEach(b => b.addEventListener("click", () => selectPlan(b.dataset.select)));
+document.querySelectorAll("[data-priority]").forEach(b => b.addEventListener("click", () => priority(b.dataset.priority)));
+document.querySelectorAll("[data-mode]").forEach(b => b.addEventListener("click", () => {
+  scanMode = b.dataset.mode;
+  document.querySelectorAll("[data-mode]").forEach(x => x.classList.toggle("active", x === b));
+  canvasBase();
+}));
+document.querySelectorAll("[data-goto]").forEach(b => b.addEventListener("click", () => $(b.dataset.goto).scrollIntoView({ behavior: "smooth" })));
+
+$("photoInput").addEventListener("change", e => {
+  let f = e.target.files[0]; if (!f) return;
+  let url = URL.createObjectURL(f), img = new Image();
+  img.onload = () => { photo = img; scanMode = "grid"; canvasBase(); URL.revokeObjectURL(url); };
+  img.src = url;
+});
+$("runScan").addEventListener("click", () => { calculate(); $("scan").scrollIntoView({ behavior: "smooth" }); });
+$("reset").addEventListener("click", () => sample("school"));
+$("copyPlan").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(summary()); toast("Summary copied!"); } catch (e) { toast("Ready to copy"); }
+});
+$("printPlan").addEventListener("click", () => window.print());
+
+function initLocations() {
+  const stSel = $("indiaStateSelect"), ctSel = $("indiaCitySelect");
+  stSel.innerHTML = Object.keys(INDIA_LOCATIONS).map(s => `<option value="${s}">${s}</option>`).join("");
+  function loadCities() {
+    const list = INDIA_LOCATIONS[stSel.value] || [];
+    ctSel.innerHTML = list.map((c, i) => `<option value="${i}">${c.city} (${c.temp}°C)</option>`).join("");
+    applyCity();
+  }
+  function applyCity() {
+    const list = INDIA_LOCATIONS[stSel.value] || [], c = list[+ctSel.value] || list[0];
+    if (!c) return;
+    currentCityLabel = c.city + ", " + stSel.value;
+    currentTariff = c.tariff;
+    $("temp").value = c.temp;
+    $("locTariffLabel").textContent = "Tariff ₹" + c.tariff + "/kWh";
+    calculate();
+  }
+  stSel.addEventListener("change", loadCities);
+  ctSel.addEventListener("change", applyCity);
+  stSel.value = "Jharkhand";
+  loadCities();
+}
+
+initLocations();
+calculate();
+if (!getHidePref()) {
+  setTimeout(openGuideModal, 400);
+}
+</script>
+</body>
+</html>
